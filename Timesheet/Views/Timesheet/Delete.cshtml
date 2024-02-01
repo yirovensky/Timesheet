@@ -1,0 +1,20 @@
+﻿@model Timesheet
+
+@{
+    ViewData["Title"] = "Delete Timesheets Record";
+}
+
+<h1 class="display-6" align="center">Вы действительно хотите удалить выбранную запись?</h1>
+
+<div class="container mt-3 text-center">
+  
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />        
+       
+        <div >
+            <input type="submit" value="Удалить" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-secondary">Отменить</a>
+        </div>
+    </form>
+</div>
+

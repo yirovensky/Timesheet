@@ -1,0 +1,71 @@
+﻿@model Timesheet
+
+@{
+    ViewData["Title"] = "Edit Timesheets Record";
+}
+
+<h1 class="display-6" align="center">Форма изменения</h1>
+
+<div class="narrow-form">
+
+    <form asp-action="Edit">
+
+        <div class="form-group">
+            <label asp-for="Employee_id">Сотрудник:</label>
+            <select asp-for="Employee_id" asp-items="ViewBag.Employees" class="form-control">
+                <option selected disabled hidden></option>
+            </select>
+            <span asp-validation-for="Employee_id" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Reason_id">Причина отсутствия:</label>
+            <select asp-for="Reason_id" asp-items="ViewBag.Reasons" class="form-control">
+                <option selected disabled hidden></option>
+            </select>
+            <span asp-validation-for="Reason_id" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Start_date" class="control-label">Дата начала:</label>
+            <input asp-for="Start_date" type="date" class="form-control" />
+            <span asp-validation-for="Start_date" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Duration" class="control-label">Продолжительность (раб. дней):</label>
+            <input asp-for="Duration" class="form-control" />
+            <span asp-validation-for="Duration" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Discounted" class="control-label">Учтено при оплате:</label>
+            <input asp-for="Discounted" type="checkbox" class="form-check" />
+            <span asp-validation-for="Discounted" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label">Комментарий:</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Изменить</button>
+            <a asp-action="Index" class="btn btn-secondary">Отменить</a>
+        </div>
+
+    </form>
+
+</div>
+
+<style>
+    .narrow-form {
+        max-width: 400px;
+        margin: auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 50px;
+    }
+</style>

@@ -1,0 +1,80 @@
+﻿@model List<Timesheet>
+
+@{
+    ViewData["Title"] = "Main Page";
+}
+
+<h1 class="display-6" align="center">Табель учета рабочего времени</h1>
+
+<div class="container mt-5">
+
+    <div>
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Добавить запись</a>
+        </p>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Индентификатор</th>
+                <th>Сотрудник</th>
+                <th>Причина отсутствия</th>
+                <th>Дата начала</th>
+                <th>Продолжительность (раб. дней)</th>
+                <th>Учтено при оплате</th>
+                <th>Комментарий</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var timesheet in Model)
+            {
+                <tr>
+                    <td>@timesheet.Id</td>
+                    <td>@timesheet.Employee.Full_name</td>
+                    <td>@timesheet.Reason.Name</td>
+                    <td>@timesheet.Start_date</td>
+                    <td>@timesheet.Duration</td>
+                    <td>@(timesheet.Discounted ? "Да" : "Нет")</td>
+                    <td>@timesheet.Description</td>
+                    <td>
+                        <div class="btn-group">
+                            
+                            <a href="@Url.Action("Edit", new { id = timesheet.Id })" class="btn btn-primary">Изменить</a>
+                            <a href="@Url.Action("Delete", new { id = timesheet.Id })" class="btn btn-danger">Удалить</a>
+                            
+                        </div>
+                        
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: auto;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        text-align: center;
+        /* white-space: nowrap;  */
+    }
+</style>
+
